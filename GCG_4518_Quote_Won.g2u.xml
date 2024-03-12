@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SyntaxEdit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Pages>
+    <DefaultPage>
+      <Header />
+      <Footer />
+    </DefaultPage>
+  </Pages>
+  <DisplayStrings />
+  <Selection>
+    <SelectionRect>
+      <Location>
+        <X>0</X>
+        <Y>99</Y>
+      </Location>
+      <Size>
+        <Width>24</Width>
+        <Height>2</Height>
+      </Size>
+      <X>0</X>
+      <Y>99</Y>
+      <Width>24</Width>
+      <Height>2</Height>
+    </SelectionRect>
+    <Options>UseColors OverwriteBlocks SelectLineOnTripleClick CopyLineWhenEmpty SelectWordOnCtrlClick</Options>
+  </Selection>
+  <Gutter>
+    <Options>PaintLineNumbers PaintBookMarks PaintLineModificators</Options>
+  </Gutter>
+  <Margin>
+    <Visible>false</Visible>
+  </Margin>
+  <LineStyles />
+  <LineSeparator />
+  <Printing>
+    <Footer />
+    <Header />
+  </Printing>
+  <WhiteSpace />
+  <TextSource>
+    <Position>
+      <X>0</X>
+      <Y>99</Y>
+    </Position>
+    <Lexer>
+      <Scheme>
+        <Author>Quantum Whale, LLC.</Author>
+        <Copyright>Copyright (c) 2004 - 2014 Quantum Whale LLC.</Copyright>
+        <FileType>gas</FileType>
+        <Version>1.5</Version>
+        <Styles>
+          <Style>
+            <Name>idents</Name>
+            <ForeColor>ControlText</ForeColor>
+          </Style>
+          <Style>
+            <Name>numbers</Name>
+            <ForeColor>ControlText</ForeColor>
+          </Style>
+          <Style>
+            <Name>reswords</Name>
+            <ForeColor>Blue</ForeColor>
+          </Style>
+          <Style>
+            <Name>comments</Name>
+            <ForeColor>Green</ForeColor>
+            <PlainText>true</PlainText>
+          </Style>
+          <Style>
+            <Name>xmlcomments</Name>
+            <ForeColor>Gray</ForeColor>
+          </Style>
+          <Style>
+            <Name>symbols</Name>
+            <ForeColor>WindowText</ForeColor>
+          </Style>
+          <Style>
+            <Name>whitespace</Name>
+            <ForeColor>WindowText</ForeColor>
+          </Style>
+          <Style>
+            <Name>strings</Name>
+            <ForeColor>Maroon</ForeColor>
+            <PlainText>true</PlainText>
+          </Style>
+          <Style>
+            <Name>directives</Name>
+            <ForeColor>Blue</ForeColor>
+          </Style>
+          <Style>
+            <Name>htmlparams</Name>
+            <ForeColor>Red</ForeColor>
+          </Style>
+          <Style>
+            <Name>syntax errors</Name>
+            <ForeColor>Red</ForeColor>
+          </Style>
+          <Style>
+            <Name>codes nippets</Name>
+            <ForeColor>Black</ForeColor>
+            <BackColor>255:180:228:180</BackColor>
+          </Style>
+          <Style>
+            <Name>GabReservedWords</Name>
+            <ForeColor>Blue</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabTokenWithBrackets</Name>
+            <ForeColor>Gray</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabFunctionIntrinsicDebug</Name>
+            <ForeColor>White</ForeColor>
+            <BackColor>Red</BackColor>
+            <FontStyle>Bold</FontStyle>
+            <PlainText>true</PlainText>
+          </Style>
+          <Style>
+            <Name>GabVariable</Name>
+            <ForeColor>Teal</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabVariableSystemDefined</Name>
+            <ForeColor>Teal</ForeColor>
+            <FontStyle>Bold Italic</FontStyle>
+          </Style>
+          <Style>
+            <Name>GabGui</Name>
+            <ForeColor>OrangeRed</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabProgramSubStartEnd</Name>
+            <ForeColor>Black</ForeColor>
+            <BackColor>LightGray</BackColor>
+            <FontStyle>Bold</FontStyle>
+            <PlainText>true</PlainText>
+          </Style>
+        </Styles>
+      </Scheme>
+    </Lexer>
+    <TextStrings>
+      <Lines>
+        <string>Program.Sub.Preflight.Start</string>
+        <string />
+        <string>Program.Sub.Preflight.End</string>
+        <string />
+        <string>Program.Sub.Main.Start</string>
+        <string>F.Intrinsic.Control.SetErrorHandler("Main_Err")</string>
+        <string>F.Intrinsic.Control.ClearErrors</string>
+        <string />
+        <string>V.Local.sError.Declare(String)</string>
+        <string />
+        <string>'This project will update the Weight field under the inventory Options tab for the parts when a quote is won if it is also a router.  </string>
+        <string>'Programmer: WAW</string>
+        <string>'date: 5/15/17</string>
+        <string />
+        <string>'open connection</string>
+        <string>F.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN, V.Ambient.PUser, V.Ambient.PPass)</string>
+        <string />
+        <string>'update weight for won quotes</string>
+        <string>f.Intrinsic.Control.CallSub(wonquotes)</string>
+        <string />
+        <string>F.Intrinsic.Control.ExitSub</string>
+        <string />
+        <string>F.Intrinsic.Control.Label("Main_Err")</string>
+        <string>F.Intrinsic.Control.If(V.Ambient.ErrorNumber,&lt;&gt;,0)</string>
+        <string>	Function.Intrinsic.String.Concat("Project: GCG_4518_Quote_Won.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)</string>
+        <string>	F.Intrinsic.UI.Msgbox(V.Local.sError)</string>
+        <string>	f.Intrinsic.Control.CallSub(unload)</string>
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>Program.Sub.Main.End</string>
+        <string />
+        <string>Program.Sub.Unload.Start</string>
+        <string>F.Intrinsic.Control.SetErrorHandler("Unload_Err")</string>
+        <string>F.Intrinsic.Control.ClearErrors</string>
+        <string />
+        <string>V.Local.sError.Declare(String)</string>
+        <string />
+        <string>'closing connection and ending program</string>
+        <string>F.ODBC.Connection!conx.Close</string>
+        <string>f.Intrinsic.Control.End</string>
+        <string />
+        <string>F.Intrinsic.Control.ExitSub</string>
+        <string />
+        <string>F.Intrinsic.Control.Label("Unload_Err")</string>
+        <string>F.Intrinsic.Control.If(V.Ambient.ErrorNumber,&lt;&gt;,0)</string>
+        <string>	Function.Intrinsic.String.Concat("Project: GCG_4518_Quote_Won.g2c",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)</string>
+        <string>	F.Intrinsic.UI.Msgbox(V.Local.sError)</string>
+        <string>	f.Intrinsic.Control.End</string>
+        <string />
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>Program.Sub.Unload.End</string>
+        <string />
+        <string>Program.Sub.WonQuotes.Start</string>
+        <string>F.Intrinsic.Control.SetErrorHandler("WonQuotes_Err")</string>
+        <string>F.Intrinsic.Control.ClearErrors</string>
+        <string />
+        <string>V.Local.sError.Declare(String)</string>
+        <string>v.Local.ssql.Declare(String)</string>
+        <string>v.Local.squote.Declare(String)</string>
+        <string>v.Local.sroutersql.Declare(string)</string>
+        <string>v.Local.sweight.Declare(string)</string>
+        <string>v.Local.supdatesql.Declare(String)</string>
+        <string />
+        <string>'set and pad the quote number</string>
+        <string>v.Local.squote.Set(v.Passed.QUOTE)</string>
+        <string>f.Intrinsic.String.LPad(v.Local.squote,"0",7,v.Local.squote)</string>
+        <string />
+        <string>'query for the parts that are on the quote and see if they are also routers</string>
+        <string>f.Intrinsic.String.Build("Select * from V_QUOTE_LINES where QUOTE_NO = '{0}' and QUOTE_WON = '{1}'",v.Local.squote.Trim,"W",v.Local.ssql)</string>
+        <string>F.ODBC.Connection!conx.OpenRecordsetRO("rst",V.Local.sSql)</string>
+        <string>F.Intrinsic.Control.DoUntil(V.ODBC.conx!rst.EOF,=,"True")</string>
+        <string>	'see if the part is also a router and get the user 1 field</string>
+        <string>	f.Intrinsic.String.Build("Select SORT_1 from V_ROUTER_HEADER where ROUTER = '{0}'",v.ODBC.conx!rst.FieldValTrim!PART,v.Local.sroutersql)</string>
+        <string>	f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sroutersql,v.Local.sweight)</string>
+        <string>	'check to see if there was a weight found</string>
+        <string>	f.Intrinsic.Control.If(v.Local.sweight.Trim,&lt;&gt;,"")</string>
+        <string>		'if there was update the weight on inventory mstr</string>
+        <string>		f.Intrinsic.String.Build("UPDATE INVENTORY_MST2 set LBS = '{0}' where PART = '{1}'",v.Local.sweight.Trim,v.ODBC.conx!rst.FieldValTrim!PART,v.Local.supdatesql)</string>
+        <string>		f.ODBC.Connection!conx.Execute(v.Local.supdatesql)	</string>
+        <string>	f.Intrinsic.Control.EndIf</string>
+        <string>F.ODBC.conx!rst.MoveNext</string>
+        <string>F.Intrinsic.Control.Loop</string>
+        <string>F.ODBC.conx!rst.Close</string>
+        <string />
+        <string>F.Intrinsic.Control.ExitSub</string>
+        <string />
+        <string>F.Intrinsic.Control.Label("WonQuotes_Err")</string>
+        <string>F.Intrinsic.Control.If(V.Ambient.ErrorNumber,&lt;&gt;,0)</string>
+        <string>	Function.Intrinsic.String.Concat("Project: GCG_4518_Quote_Won.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)</string>
+        <string>	F.Intrinsic.UI.Msgbox(V.Local.sError)</string>
+        <string>	f.Intrinsic.Control.CallSub(unload)</string>
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>Program.Sub.WonQuotes.End</string>
+        <string />
+        <string>Program.Sub.Comments.Start</string>
+        <string>${$0$}$$}$WAW$}$5/15/2017 8:12:22 AM$}$True</string>
+        <string>Program.Sub.Comments.End</string>
+      </Lines>
+    </TextStrings>
+  </TextSource>
+  <Scrolling>
+    <WindowOriginY>24</WindowOriginY>
+  </Scrolling>
+  <Outlining>
+    <AllowOutlining>true</AllowOutlining>
+    <ImageSize>8</ImageSize>
+    <Ranges>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>0</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>2</Y>
+        </EndPoint>
+        <Text>Program.Sub.Preflight</Text>
+        <DisplayText>Program.Sub.Preflight</DisplayText>
+        <Visible>false</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>4</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>30</Y>
+        </EndPoint>
+        <Text>Program.Sub.Main</Text>
+        <DisplayText>Program.Sub.Main</DisplayText>
+        <Visible>true</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>32</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>53</Y>
+        </EndPoint>
+        <Text>Program.Sub.Unload</Text>
+        <DisplayText>Program.Sub.Unload</DisplayText>
+        <Visible>false</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>55</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>97</Y>
+        </EndPoint>
+        <Text>Program.Sub.WonQuotes</Text>
+        <DisplayText>Program.Sub.WonQuotes</DisplayText>
+        <Visible>true</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>99</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>101</Y>
+        </EndPoint>
+        <Text>Program.Sub.Comments</Text>
+        <DisplayText>Program.Sub.Comments</DisplayText>
+        <Visible>false</Visible>
+        <Level>0</Level>
+      </Range>
+    </Ranges>
+  </Outlining>
+  <HyperText />
+  <Spelling />
+  <Braces />
+</SyntaxEdit>
