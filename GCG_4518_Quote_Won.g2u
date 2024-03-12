@@ -1,0 +1,102 @@
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'This project will update the Weight field under the inventory Options tab for the parts when a quote is won if it is also a router.  
+'Programmer: WAW
+'date: 5/15/17
+
+'open connection
+F.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN, V.Ambient.PUser, V.Ambient.PPass)
+
+'update weight for won quotes
+f.Intrinsic.Control.CallSub(wonquotes)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4518_Quote_Won.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	f.Intrinsic.Control.CallSub(unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Main.End
+
+Program.Sub.Unload.Start
+F.Intrinsic.Control.SetErrorHandler("Unload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'closing connection and ending program
+F.ODBC.Connection!conx.Close
+f.Intrinsic.Control.End
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Unload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4518_Quote_Won.g2c",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	f.Intrinsic.Control.End
+
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Unload.End
+
+Program.Sub.WonQuotes.Start
+F.Intrinsic.Control.SetErrorHandler("WonQuotes_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+v.Local.ssql.Declare(String)
+v.Local.squote.Declare(String)
+v.Local.sroutersql.Declare(string)
+v.Local.sweight.Declare(string)
+v.Local.supdatesql.Declare(String)
+
+'set and pad the quote number
+v.Local.squote.Set(v.Passed.QUOTE)
+f.Intrinsic.String.LPad(v.Local.squote,"0",7,v.Local.squote)
+
+'query for the parts that are on the quote and see if they are also routers
+f.Intrinsic.String.Build("Select * from V_QUOTE_LINES where QUOTE_NO = '{0}' and QUOTE_WON = '{1}'",v.Local.squote.Trim,"W",v.Local.ssql)
+F.ODBC.Connection!conx.OpenRecordsetRO("rst",V.Local.sSql)
+F.Intrinsic.Control.DoUntil(V.ODBC.conx!rst.EOF,=,"True")
+	'see if the part is also a router and get the user 1 field
+	f.Intrinsic.String.Build("Select SORT_1 from V_ROUTER_HEADER where ROUTER = '{0}'",v.ODBC.conx!rst.FieldValTrim!PART,v.Local.sroutersql)
+	f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sroutersql,v.Local.sweight)
+	'check to see if there was a weight found
+	f.Intrinsic.Control.If(v.Local.sweight.Trim,<>,"")
+		'if there was update the weight on inventory mstr
+		f.Intrinsic.String.Build("UPDATE INVENTORY_MST2 set LBS = '{0}' where PART = '{1}'",v.Local.sweight.Trim,v.ODBC.conx!rst.FieldValTrim!PART,v.Local.supdatesql)
+		f.ODBC.Connection!conx.Execute(v.Local.supdatesql)	
+	f.Intrinsic.Control.EndIf
+F.ODBC.conx!rst.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.conx!rst.Close
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("WonQuotes_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4518_Quote_Won.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	f.Intrinsic.Control.CallSub(unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.WonQuotes.End
+
+Program.Sub.Comments.Start
+${$0$}$$}$WAW$}$5/15/2017 8:12:22 AM$}$True
+Program.Sub.Comments.End
